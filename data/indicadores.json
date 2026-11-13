@@ -1,0 +1,341 @@
+{
+  "matriz_beneficios": {
+    "columnas": [
+      "Alojamiento",
+      "Alimentación",
+      "Medicamentos e insumos",
+      "Exámenes auxiliares",
+      "Traslados",
+      "Psicología",
+      "Terapia física",
+      "Tópico 24 h",
+      "Medicamentos alto costo",
+      "Equipos médicos",
+      "Prótesis",
+      "Ayuda social",
+      "Financia prestaciones",
+      "Asistencia técnica"
+    ],
+    "filas": {
+      "INSPIRA": [
+        "Alojamiento",
+        "Alimentación",
+        "Traslados",
+        "Psicología",
+        "Terapia física",
+        "Tópico 24 h"
+      ],
+      "MAGIA": [
+        "Alojamiento",
+        "Alimentación",
+        "Medicamentos e insumos",
+        "Exámenes auxiliares",
+        "Traslados",
+        "Tópico 24 h",
+        "Equipos médicos"
+      ],
+      "SAN_VICENTE": [
+        "Alojamiento",
+        "Alimentación"
+      ],
+      "FPC": [
+        "Alojamiento",
+        "Alimentación",
+        "Traslados",
+        "Psicología",
+        "Terapia física",
+        "Tópico 24 h"
+      ],
+      "ALINEN": [
+        "Alojamiento",
+        "Alimentación",
+        "Medicamentos e insumos",
+        "Equipos médicos",
+        "Ayuda social"
+      ],
+      "WIESE": [
+        "Prótesis"
+      ],
+      "EJERCITO": [
+        "Traslados",
+        "Asistencia técnica"
+      ],
+      "SALUDPOL": [
+        "Financia prestaciones",
+        "Medicamentos e insumos"
+      ],
+      "FOSFAP": [
+        "Financia prestaciones",
+        "Medicamentos e insumos",
+        "Medicamentos alto costo"
+      ],
+      "FOSMAR": [
+        "Financia prestaciones",
+        "Medicamentos e insumos",
+        "Medicamentos alto costo"
+      ],
+      "ONCOSALUD": [
+        "Financia prestaciones",
+        "Medicamentos e insumos"
+      ],
+      "SIS_FISSAL": [
+        "Financia prestaciones",
+        "Medicamentos e insumos",
+        "Medicamentos alto costo",
+        "Traslados"
+      ]
+    },
+    "parciales": {
+      "EJERCITO": {
+        "Financia prestaciones": "Vía FOSPEME"
+      },
+      "SALUDPOL": {
+        "Medicamentos alto costo": "Solo PNUME"
+      },
+      "ONCOSALUD": {
+        "Medicamentos alto costo": "Según plan"
+      }
+    },
+    "notas": {
+      "SIS_FISSAL": {
+        "Medicamentos e insumos": "Cl. 21.1: el pago por prestación incluye productos farmacéuticos, dispositivos médicos y productos sanitarios.",
+        "Medicamentos alto costo": "FISSAL financia enfermedades y procedimientos de alto costo desde el diagnóstico definitivo (cl. 21.6). Los no PNUME de alto costo requieren aprobación del Comité Farmacoterapéutico y evaluación de tecnologías sanitarias (num. 8.36). Parte se adquiere por compra centralizada CENARES y se descuenta del marco."
+      },
+      "EJERCITO": {
+        "Financia prestaciones": "El convenio marco no implica transferencia de recursos ni obligaciones pecuniarias (cl. séptima). La atención de beneficiarios del Ejército se paga por la IAFAS FOSPEME en su propio convenio."
+      },
+      "SALUDPOL": {
+        "Medicamentos e insumos": "Cl. 8.2: los productos de Farmacia se pagan por consumo a precio SISMED.",
+        "Medicamentos alto costo": "Cubre los oncológicos del PNUME y listas complementarias. Si se requiere un medicamento No PNUME oncológico, SaludPol gestiona su atención en otra IPRESS (num. 13.9)."
+      },
+      "FOSFAP": {
+        "Medicamentos e insumos": "Cl. 9: los productos de Farmacia se pagan por consumo según tarifario.",
+        "Medicamentos alto costo": "Plan ONCOFAP sin límite de cobertura. Medicamentos del PNUME o aprobados por el Comité Farmacoterapéutico del INEN; los no incluidos, previo acuerdo. Si el INEN no los tiene, la IAFAS puede autorizar la compra por paciente o enviarlos (num. 14.13)."
+      },
+      "FOSMAR": {
+        "Medicamentos e insumos": "Num. 9.3: los productos de Farmacia son financiados por la IAFAS y se pagan por consumo a precio SISMED.",
+        "Medicamentos alto costo": "Plan Onconaval sin límite de cobertura. Medicamentos del PNUME o aprobados por el Comité Farmacoterapéutico del INEN; los no incluidos, previo acuerdo."
+      },
+      "ONCOSALUD": {
+        "Medicamentos e insumos": "La prestación de salud incluye productos farmacéuticos, dispositivos y productos sanitarios (definición 14), con carta de garantía al 100%.",
+        "Medicamentos alto costo": "El contrato no lo regula expresamente: depende del plan del asegurado y de las exclusiones que Oncosalud comunique con cada carta de garantía."
+      }
+    }
+  },
+  "albergues": [
+    {
+      "id": "INSPIRA",
+      "poblacion": "Niños",
+      "edad_min": 0,
+      "edad_max": 12,
+      "edad_max_reingreso": 15,
+      "habitaciones": 30,
+      "operativas": 12,
+      "camas": 49,
+      "tamo": 3,
+      "yodoterapia": 3,
+      "neurologia": 0,
+      "silla_ruedas": "Sí",
+      "movilidad": "2 al día"
+    },
+    {
+      "id": "MAGIA",
+      "poblacion": "Niños",
+      "edad_min": 0,
+      "edad_max": 15,
+      "edad_max_reingreso": 17,
+      "habitaciones": 27,
+      "operativas": 27,
+      "camas": 54,
+      "tamo": 6,
+      "yodoterapia": 0,
+      "neurologia": 5,
+      "silla_ruedas": "Sí",
+      "movilidad": "2 al día"
+    },
+    {
+      "id": "SAN_VICENTE",
+      "poblacion": "Adolescentes y jóvenes (estadio I y II)",
+      "edad_min": 14,
+      "edad_max": 22,
+      "edad_max_reingreso": 22,
+      "habitaciones": 20,
+      "operativas": 10,
+      "camas": 40,
+      "tamo": 6,
+      "yodoterapia": 1,
+      "neurologia": 0,
+      "silla_ruedas": "No",
+      "movilidad": "No indica"
+    },
+    {
+      "id": "FPC",
+      "poblacion": "Niños, adolescentes y adultos",
+      "edad_min": 0,
+      "edad_max": 65,
+      "edad_max_reingreso": 65,
+      "habitaciones": 12,
+      "operativas": 12,
+      "camas": 70,
+      "tamo": 1,
+      "yodoterapia": 0,
+      "neurologia": 0,
+      "silla_ruedas": "Parcial",
+      "movilidad": "Cada 30 min"
+    },
+    {
+      "id": "ALINEN",
+      "poblacion": "Mujeres adultas",
+      "edad_min": 18,
+      "edad_max": 65,
+      "edad_max_reingreso": 65,
+      "habitaciones": 8,
+      "operativas": 8,
+      "camas": 48,
+      "tamo": 0,
+      "yodoterapia": 0,
+      "neurologia": 0,
+      "silla_ruedas": "No",
+      "movilidad": "No indica"
+    }
+  ],
+  "prestacionales": [
+    {
+      "id": "SIS_FISSAL",
+      "mecanismo": "Pago por prestación, prospectivo por tramos",
+      "autorizacion": "Acreditación en padrón SIS",
+      "emergencia_h": null,
+      "conformidad_d": null,
+      "subsanacion_d": null,
+      "pago_d": null,
+      "cg_amb": null,
+      "cg_eme": null,
+      "cg_hosp": null,
+      "extra": [
+        "SIS: 80% + 20% por indicadores",
+        "FISSAL: 85% + 15% por indicadores",
+        "Marco 2026 SIS S/ 49.5 M",
+        "Marco 2026 FISSAL S/ 119.6 M",
+        "Medicamentos incluidos en la prestación",
+        "Alto costo FISSAL"
+      ]
+    },
+    {
+      "id": "SALUDPOL",
+      "mecanismo": "Prospectivo (adelanto trimestral)",
+      "autorizacion": "Documento de Autorización",
+      "emergencia_h": 72,
+      "conformidad_d": 5,
+      "subsanacion_d": null,
+      "pago_d": 15,
+      "cg_amb": null,
+      "cg_eme": null,
+      "cg_hosp": null,
+      "extra": [
+        "Farmacia por consumo (SISMED)",
+        "No PNUME oncológico: otra IPRESS"
+      ]
+    },
+    {
+      "id": "FOSFAP",
+      "mecanismo": "Retrospectivo, pago por consumo",
+      "autorizacion": "Carta de garantía",
+      "emergencia_h": 72,
+      "conformidad_d": 20,
+      "subsanacion_d": 30,
+      "pago_d": 25,
+      "cg_amb": 10000,
+      "cg_eme": 15000,
+      "cg_hosp": 30000,
+      "extra": [
+        "Farmacia por consumo",
+        "ONCOFAP sin límite de cobertura"
+      ]
+    },
+    {
+      "id": "FOSMAR",
+      "mecanismo": "Retrospectivo, pago por consumo",
+      "autorizacion": "Carta de garantía",
+      "emergencia_h": 72,
+      "conformidad_d": 20,
+      "subsanacion_d": 30,
+      "pago_d": 25,
+      "cg_amb": 10000,
+      "cg_eme": 15000,
+      "cg_hosp": 30000,
+      "extra": [
+        "Farmacia por consumo (SISMED)",
+        "Onconaval sin límite de cobertura"
+      ]
+    },
+    {
+      "id": "ONCOSALUD",
+      "mecanismo": "Pagos a cuenta mensuales",
+      "autorizacion": "Carta de garantía al 100%",
+      "emergencia_h": 72,
+      "conformidad_d": 5,
+      "subsanacion_d": 30,
+      "pago_d": 30,
+      "cg_amb": null,
+      "cg_eme": null,
+      "cg_hosp": null,
+      "extra": [
+        "Medicamentos incluidos en la carta de garantía"
+      ]
+    }
+  ],
+  "perfiles": [
+    {
+      "perfil": "Niño o niña de 0 a 12 años de región",
+      "opciones": [
+        "INSPIRA",
+        "MAGIA"
+      ],
+      "nota": "Silla de ruedas: ambos. Yodoterapia: INSPIRA."
+    },
+    {
+      "perfil": "Niño de 13 a 15 años o paciente de neurología",
+      "opciones": [
+        "MAGIA"
+      ],
+      "nota": "5 ambientes de neurología; reingresos hasta 17 años."
+    },
+    {
+      "perfil": "Adolescente o joven de 14 a 22 años, estadio I o II, autovalente",
+      "opciones": [
+        "SAN_VICENTE"
+      ],
+      "nota": "No apto para silla de ruedas."
+    },
+    {
+      "perfil": "Adulto o familia mixta de región",
+      "opciones": [
+        "FPC"
+      ],
+      "nota": "70 camas; con limitación de movilidad, 1.er piso."
+    },
+    {
+      "perfil": "Mujer adulta de región",
+      "opciones": [
+        "ALINEN",
+        "FPC"
+      ],
+      "nota": "ALINEN no apto para silla de ruedas."
+    },
+    {
+      "perfil": "Medicamentos, exámenes o equipos que no cubre el seguro",
+      "opciones": [
+        "MAGIA",
+        "ALINEN"
+      ],
+      "nota": "MAGIA solo pediatría; según disponibilidad."
+    },
+    {
+      "perfil": "Paciente amputado por cáncer",
+      "opciones": [
+        "WIESE"
+      ],
+      "nota": "Referencia de Medicina Física y Rehabilitación."
+    }
+  ]
+}
