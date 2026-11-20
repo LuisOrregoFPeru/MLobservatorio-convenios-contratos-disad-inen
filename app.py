@@ -129,7 +129,9 @@ def tarjeta(r) -> None:
         with b1:
             pdf = PDFS / r["pdf"]
             if pdf.exists():
-                boton_descarga("⬇️ PDF", pdf.read_bytes(), r["pdf"], "application/pdf", f"pdf_{r['id']}")
+                boton_descarga(f"⬇️ {r.get('pdf_etiqueta') or 'PDF'}", pdf.read_bytes(), r["pdf"], "application/pdf", f"pdf_{r['id']}")
+            else:
+                st.caption(f"Falta el archivo pdfs/{r['pdf']}")
         with b2:
             with ventana("📄 Ficha"):
                 st.markdown(f"**{r['institucion']}**  \n{r['modalidad']}")
@@ -156,13 +158,13 @@ def tarjeta(r) -> None:
                                   f"<span class='chip'>CG hospitalización S/ {cp['cg_hosp']:,.0f}</span>")
                     st.markdown(chips, unsafe_allow_html=True)
                 st.caption(r["nota_fechas"])
-                extras = r.get("pdfs_extra") if isinstance(r.get("pdfs_extra"), list) else []
-                for j, ex in enumerate(extras):
-                    fx = ex["archivo"]
-                    px = PDFS / fx
-                    if px.exists():
-                        st.download_button(f"⬇️ {ex['etiqueta']}", px.read_bytes(), file_name=fx,
-                                           mime="application/pdf", key=f"px_{r['id']}_{j}")
+        extras = r.get("pdfs_extra") if isinstance(r.get("pdfs_extra"), list) else []
+        for j, ex in enumerate(extras):
+            px = PDFS / ex["archivo"]
+            if px.exists():
+                boton_descarga(f"📎 {ex['etiqueta']}", px.read_bytes(), ex["archivo"], "application/pdf", f"px_{r['id']}_{j}")
+            else:
+                st.caption(f"Falta el archivo pdfs/{ex['archivo']}")
         if r["estado"] in ("Vencido", "Crítico"):
             st.caption(f"⚠️ {accion_sugerida(r)}")
 

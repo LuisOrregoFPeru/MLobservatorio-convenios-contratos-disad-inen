@@ -19,7 +19,8 @@
     "objeto_corto": "Voluntariado, ayuda social y apoyo asistencial a pacientes de escasos recursos",
     "inicio_periodo": "2026-04-17",
     "logo_url": "",
-    "clase": "Convenio"
+    "clase": "Convenio",
+    "pdf_etiqueta": "Convenio"
   },
   {
     "id": "FPC",
@@ -41,7 +42,8 @@
     "objeto_corto": "Albergue de pacientes; el INEN aporta hasta 90 raciones diarias",
     "inicio_periodo": "2025-05-29",
     "logo_url": "",
-    "clase": "Convenio"
+    "clase": "Convenio",
+    "pdf_etiqueta": "2.a adenda (2023)"
   },
   {
     "id": "MAGIA",
@@ -63,7 +65,8 @@
     "objeto_corto": "Medicamentos, exámenes, alojamiento y traslados para niños con cáncer",
     "inicio_periodo": "2026-05-19",
     "logo_url": "",
-    "clase": "Convenio"
+    "clase": "Convenio",
+    "pdf_etiqueta": "Convenio"
   },
   {
     "id": "INSPIRA",
@@ -85,7 +88,8 @@
     "objeto_corto": "Alojamiento gratuito para niños de regiones en tratamiento",
     "inicio_periodo": "2023-11-21",
     "logo_url": "",
-    "clase": "Convenio"
+    "clase": "Convenio",
+    "pdf_etiqueta": "Convenio"
   },
   {
     "id": "SAN_VICENTE",
@@ -107,7 +111,8 @@
     "objeto_corto": "Alojamiento y alimentación para adolescentes y jóvenes de 14 a 22 años",
     "inicio_periodo": "2025-01-17",
     "logo_url": "",
-    "clase": "Convenio"
+    "clase": "Convenio",
+    "pdf_etiqueta": "Convenio"
   },
   {
     "id": "WIESE",
@@ -129,7 +134,8 @@
     "objeto_corto": "Donación de prótesis a medida (fondo de S/ 135,000)",
     "inicio_periodo": "2026-09-18",
     "logo_url": "",
-    "clase": "Convenio"
+    "clase": "Convenio",
+    "pdf_etiqueta": "Convenio"
   },
   {
     "id": "SIS_FISSAL",
@@ -161,7 +167,8 @@
         "archivo": "12_SIS_FISSAL_adenda2_2026.pdf"
       }
     ],
-    "logo_url": ""
+    "logo_url": "",
+    "pdf_etiqueta": "Convenio (2025)"
   },
   {
     "id": "EJERCITO",
@@ -183,7 +190,8 @@
     "objeto_corto": "Cooperación técnica e integración a la Red Oncológica Nacional",
     "inicio_periodo": "2025-07-15",
     "logo_url": "",
-    "clase": "Convenio"
+    "clase": "Convenio",
+    "pdf_etiqueta": "Convenio"
   },
   {
     "id": "SALUDPOL",
@@ -205,7 +213,8 @@
     "objeto_corto": "Atención oncológica a asegurados de la PNP",
     "inicio_periodo": "2025-03-22",
     "logo_url": "",
-    "clase": "Convenio"
+    "clase": "Convenio",
+    "pdf_etiqueta": "Convenio"
   },
   {
     "id": "FOSFAP",
@@ -227,7 +236,8 @@
     "objeto_corto": "Prestaciones oncológicas a beneficiarios de la FAP",
     "inicio_periodo": "2021-06-21",
     "logo_url": "",
-    "clase": "Convenio"
+    "clase": "Convenio",
+    "pdf_etiqueta": "Convenio"
   },
   {
     "id": "FOSMAR",
@@ -249,7 +259,8 @@
     "objeto_corto": "Prestaciones oncológicas a beneficiarios de la Marina",
     "inicio_periodo": "2021-07-09",
     "logo_url": "",
-    "clase": "Convenio"
+    "clase": "Convenio",
+    "pdf_etiqueta": "Convenio"
   },
   {
     "id": "ONCOSALUD",
@@ -271,6 +282,7 @@
     "objeto_corto": "Prestaciones especializadas a asegurados de Oncosalud",
     "inicio_periodo": "2026-05-08",
     "logo_url": "",
-    "clase": "Contrato"
+    "clase": "Contrato",
+    "pdf_etiqueta": "Contrato"
   }
 ]
