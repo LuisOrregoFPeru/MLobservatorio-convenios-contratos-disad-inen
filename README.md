@@ -1,4 +1,4 @@
-# Observatorio de convenios y contratos a cargo de DISAD (INEN)
+# Observatorio de convenios y contratos - Dirección de Servicios de Apoyo al Diagnóstico y Tratamiento (INEN)
 
 Tablero Streamlit con dos vistas separadas (convenios no prestacionales y convenios/contratos prestacionales), semáforo de vencimientos, línea de tiempo, fecha límite para comunicar renovación o no renovación, descarga de cada PDF, cuadro de beneficios y criterios de derivación, y alertas por correo.
 

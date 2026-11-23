@@ -78,6 +78,19 @@
     "limites": "El convenio termina al agotarse el fondo aunque no haya vencido el plazo."
   },
   {
+    "id": "IRD",
+    "tipo": "No prestacional",
+    "institucion": "IRD Francia",
+    "categoria": "Cooperación científica",
+    "que_brinda": "Recepción y procesamiento de muestras biológicas del Banco de Tejidos Tumorales para proyectos conjuntos, análisis especializados en laboratorios de terceros mediante MTA, intercambio de información y formación de capacidades en salud pública.",
+    "poblacion": "Investigadores y especialistas del INEN con proyectos registrados y aprobados por el Comité de Ética Institucional.",
+    "capacidad": "Según convenios específicos; cada parte asume el costo de su personal y conserva la propiedad de sus bienes.",
+    "accesibilidad": "No aplica.",
+    "criterios_derivacion": "Proyecto aprobado por el Comité de Ética del INEN, consentimiento informado de los donantes y autorización del punto focal peruano del Protocolo de Nagoya cuando corresponda. Publicaciones con autorización escrita de la otra parte.",
+    "como_solicitar": "A través del Jefe del Banco de Tejidos Tumorales, representante del INEN ante el IRD.",
+    "limites": "Vencido desde el 30/07/2026: requiere nueva adenda o acuerdo marco para continuar."
+  },
+  {
     "id": "EJERCITO",
     "tipo": "Prestacional",
     "institucion": "Ejército del Perú",
@@ -147,12 +160,12 @@
     "tipo": "Prestacional",
     "institucion": "Oncosalud S.A.C.",
     "categoria": "Financiamiento de prestaciones (IAFAS privada)",
-    "que_brinda": "Pago por servicio con pagos a cuenta mensuales de la liquidación final, según tarifario INEN vigente a la fecha de prestación.",
+    "que_brinda": "Pago retrospectivo con pagos a cuenta mensuales de la liquidación final, según el Tarifario Institucional vigente del INEN complementado por las Resoluciones Viceministeriales del MINSA. Cubre atención ambulatoria, hospitalaria y de emergencia.",
     "poblacion": "Asegurados de Oncosalud acreditados vía SITEDS, según su Plan de Salud.",
     "capacidad": "Carta de garantía por el 100% del costo presupuestado de la prestación solicitada.",
     "accesibilidad": "No aplica.",
-    "criterios_derivacion": "Carta de garantía previa al 100% del presupuesto; en emergencia se regulariza en 72 horas. Conformidad de la IAFAS en 5 días; pago en máximo 30 días; si la deuda persiste el INEN puede suspender nuevas solicitudes.",
+    "criterios_derivacion": "Asegurado acreditado y carta de garantía previa con sus ampliaciones, que consigna las exclusiones. Conformidad de la IAFAS en 20 días calendario, subsanación hasta 30 días y pago en 30 días tras la conformidad. Por cada día de atraso en el pago se aplica una penalidad del 2% de la UIT.",
     "como_solicitar": "Unidad Funcional de Seguros (auditoría médica); Oficina de Contabilidad (conformidad de la producción).",
-    "limites": "Las exclusiones las entrega Oncosalud al inicio de cada prestación, bajo su responsabilidad."
+    "limites": "Las exclusiones se consignan en cada carta de garantía. Las observaciones tarifarias no pueden desconocer el tarifario institucional."
   }
 ]

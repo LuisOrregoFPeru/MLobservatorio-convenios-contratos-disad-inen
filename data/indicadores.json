@@ -14,7 +14,9 @@
       "Prótesis",
       "Ayuda social",
       "Financia prestaciones",
-      "Asistencia técnica"
+      "Asistencia técnica",
+      "Investigación",
+      "Formación"
     ],
     "filas": {
       "INSPIRA": [
@@ -83,6 +85,10 @@
         "Medicamentos e insumos",
         "Medicamentos alto costo",
         "Traslados"
+      ],
+      "IRD": [
+        "Investigación",
+        "Formación"
       ]
     },
     "parciales": {
@@ -117,8 +123,12 @@
         "Medicamentos alto costo": "Plan Onconaval sin límite de cobertura. Medicamentos del PNUME o aprobados por el Comité Farmacoterapéutico del INEN; los no incluidos, previo acuerdo."
       },
       "ONCOSALUD": {
-        "Medicamentos e insumos": "La prestación de salud incluye productos farmacéuticos, dispositivos y productos sanitarios (definición 14), con carta de garantía al 100%.",
-        "Medicamentos alto costo": "El contrato no lo regula expresamente: depende del plan del asegurado y de las exclusiones que Oncosalud comunique con cada carta de garantía."
+        "Medicamentos e insumos": "Incluidos en la prestación de salud cubierta por la carta de garantía y valorizados con el Tarifario Institucional del INEN (contrato 2026).",
+        "Medicamentos alto costo": "El contrato no lo regula expresamente: depende del plan del asegurado y de las exclusiones que Oncosalud consigne en cada carta de garantía (cl. 7.2)."
+      },
+      "IRD": {
+        "Investigación": "Procesamiento de muestras del Banco de Tejidos Tumorales en proyectos conjuntos (1.a adenda).",
+        "Formación": "Formación de capacidades en salud pública (art. 1)."
       }
     }
   },
@@ -270,16 +280,17 @@
     },
     {
       "id": "ONCOSALUD",
-      "mecanismo": "Pagos a cuenta mensuales",
-      "autorizacion": "Carta de garantía al 100%",
-      "emergencia_h": 72,
-      "conformidad_d": 5,
+      "mecanismo": "Retrospectivo, pagos a cuenta mensuales",
+      "autorizacion": "Carta de garantía con exclusiones",
+      "emergencia_h": null,
+      "conformidad_d": 20,
       "subsanacion_d": 30,
       "pago_d": 30,
       "cg_amb": null,
       "cg_eme": null,
       "cg_hosp": null,
       "extra": [
+        "Penalidad por atraso en el pago: 2% UIT por día",
         "Medicamentos incluidos en la carta de garantía"
       ]
     }

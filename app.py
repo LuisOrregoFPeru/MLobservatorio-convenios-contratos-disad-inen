@@ -15,7 +15,7 @@ import streamlit as st
 from core import (BASE, COLORES, ORDEN_ESTADO, PDFS, accion_sugerida, cargar_beneficios, cargar_convenios,
                   config_correo, enviar_correo, hoy, html_alerta, seleccionar_alertas)
 
-st.set_page_config(page_title="Observatorio de convenios DISAD | INEN", page_icon="📑", layout="wide")
+st.set_page_config(page_title="Observatorio de convenios y contratos | INEN", page_icon="📑", layout="wide")
 
 # ---------------------------------------------------------------- compatibilidad entre versiones de Streamlit
 try:
@@ -225,7 +225,9 @@ st.markdown(
     f"margin-bottom:14px'>"
     f"<div style='background:#fff;border-radius:10px;padding:6px 10px'>{logo_html('INEN', 78)}</div>"
     f"<div><div style='font-size:1.9rem;font-weight:800;line-height:1.15;color:#0B4A9E'>"
-    f"Observatorio de convenios y contratos a cargo de DISAD</div>"
+    f"Observatorio de convenios y contratos</div>"
+    f"<div style='font-size:1.25rem;font-weight:600;color:#175CD3;margin-top:4px'>"
+    f"Dirección de Servicios de Apoyo al Diagnóstico y Tratamiento</div>"
     f"<div style='margin-top:6px;opacity:.75'>Instituto Nacional de Enfermedades Neoplásicas · corte {HOY:%d/%m/%Y}</div>"
     f"</div></div>",
     unsafe_allow_html=True,
@@ -295,7 +297,7 @@ with t1:
 
     st.divider()
     st.markdown("### 🎁 Qué nos da cada uno")
-    ids_np = ["INSPIRA", "MAGIA", "SAN_VICENTE", "FPC", "ALINEN", "WIESE"]
+    ids_np = ["INSPIRA", "MAGIA", "SAN_VICENTE", "FPC", "ALINEN", "WIESE", "IRD"]
     mapa_beneficios(ids_np, "mapa_np")
 
     st.markdown("#### Guía rápida de derivación")

@@ -138,6 +138,39 @@
     "pdf_etiqueta": "Convenio"
   },
   {
+    "id": "IRD",
+    "tipo": "No prestacional",
+    "clase": "Convenio",
+    "corto": "IRD Francia",
+    "institucion": "Instituto de Investigación para el Desarrollo (IRD) de Francia",
+    "modalidad": "Acuerdo marco de cooperación científica y técnica (22/05/2014), con 1.a adenda (2018) y 2.a adenda (2022)",
+    "objeto": "Definir un marco de cooperación para el intercambio de información, la promoción y la formación de capacidades en salud pública. Por la 1.a adenda, el INEN obtiene muestras biológicas de proyectos aprobados por su Comité de Ética, las conserva en el Banco de Tejidos Tumorales y las envía al IRD, que las recibe y procesa bajo acuerdos de transferencia de material (MTA), respetando el Protocolo de Nagoya.",
+    "objeto_corto": "Cooperación científica: investigación con muestras del Banco de Tejidos Tumorales y formación",
+    "inicio": "2014-05-22",
+    "inicio_periodo": "2022-07-31",
+    "fin_periodo_actual": "2026-07-30",
+    "nota_fechas": "Acuerdo marco de 4 años desde el 22/05/2014. La 1.a adenda lo prorrogó 4 años desde el 30/07/2018 y la 2.a adenda lo renovó hasta el 30/07/2026, con eficacia anticipada desde el 31/07/2022. Sin una 3.a adenda, el acuerdo está vencido.",
+    "renovacion": "Expresa (adenda)",
+    "regla_renovacion": "Se amplía o modifica previo acuerdo de las partes, mediante adenda o un nuevo acuerdo marco (art. 10). Cualquiera de las partes puede rescindirlo con 4 meses de aviso escrito (art. 12.3).",
+    "aviso_dias": 120,
+    "responsable": "Jefe del Banco de Tejidos Tumorales del INEN",
+    "coordinador_contraparte": "Representante del IRD en el Perú",
+    "estado_manual": "",
+    "pdf": "13_IRD_acuerdo_marco_2014.pdf",
+    "pdf_etiqueta": "Acuerdo (2014)",
+    "pdfs_extra": [
+      {
+        "etiqueta": "Primera adenda (2018)",
+        "archivo": "13_IRD_adenda1_2018.pdf"
+      },
+      {
+        "etiqueta": "Segunda adenda (2022)",
+        "archivo": "13_IRD_adenda2_2022.pdf"
+      }
+    ],
+    "logo_url": ""
+  },
+  {
     "id": "SIS_FISSAL",
     "tipo": "Prestacional",
     "clase": "Convenio",
@@ -266,23 +299,29 @@
     "id": "ONCOSALUD",
     "tipo": "Prestacional",
     "institucion": "Oncosalud S.A.C.",
-    "modalidad": "Contrato de prestación de servicios de salud IAFAS privada e IPRESS pública",
-    "objeto": "La IPRESS otorga prestaciones de salud especializadas, según su capacidad resolutiva, a los asegurados acreditados de la IAFAS conforme a su Plan de Salud. La IAFAS paga según solicitud, orden médica, mecanismo de pago y tarifas acordadas.",
-    "inicio": "2019-05-09",
-    "fin_periodo_actual": "2027-05-07",
-    "nota_fechas": "Contrato de 1 año desde mayo de 2019 con renovación automática por periodos anuales iguales; el periodo en curso se inició en mayo de 2026.",
+    "modalidad": "Contrato de prestación de servicios de salud IAFAS privada e IPRESS pública, adecuado a las cláusulas mínimas de la R.S. N° 004-2020-SUSALUD/S (suscrito el 09/11/2026). Reemplaza al contrato de mayo de 2019.",
+    "objeto": "La IPRESS brinda servicios de salud ambulatorios, hospitalarios y de emergencia a los asegurados acreditados de la IAFAS, según su Plan de Aseguramiento y la categorización del INEN. La IAFAS paga según el mecanismo de pago y el Tarifario Institucional vigente del INEN, complementado por las Resoluciones Viceministeriales del MINSA.",
+    "inicio": "2026-11-10",
+    "fin_periodo_actual": "2027-11-09",
+    "nota_fechas": "Suscrito el 09/11/2026 y vigente desde el día siguiente por 1 año, con prórroga automática anual. Es la adecuación a la R.S. N° 004-2020-SUSALUD/S del contrato firmado en mayo de 2019, que se mantiene como antecedente.",
     "renovacion": "Automática",
-    "regla_renovacion": "Renovación automática por periodos iguales (anuales), salvo desacuerdo comunicado por escrito con 30 días de antelación al vencimiento.",
+    "regla_renovacion": "Prórroga automática por un año adicional, y así sucesivamente, salvo que una de las partes comunique por escrito su voluntad de no renovar con 30 días de anticipación (cl. 19.1).",
     "aviso_dias": 30,
-    "responsable": "No precisa. Auditoría médica: Unidad Funcional de Seguros; conformidad de información: Oficina de Contabilidad",
-    "coordinador_contraparte": "No precisa",
+    "responsable": "Unidad Funcional de Seguros (auditoría médica y liquidaciones)",
+    "coordinador_contraparte": "Área de Liquidaciones de Oncosalud",
     "estado_manual": "",
-    "pdf": "11_ONCOSALUD.pdf",
+    "pdf": "11_ONCOSALUD_contrato_2026.pdf",
     "corto": "Oncosalud",
-    "objeto_corto": "Prestaciones especializadas a asegurados de Oncosalud",
-    "inicio_periodo": "2026-05-08",
+    "objeto_corto": "Atención ambulatoria, hospitalaria y de emergencia a asegurados de Oncosalud",
+    "inicio_periodo": "2026-11-10",
     "logo_url": "",
     "clase": "Contrato",
-    "pdf_etiqueta": "Contrato"
+    "pdf_etiqueta": "Contrato 2026",
+    "pdfs_extra": [
+      {
+        "etiqueta": "Contrato anterior (2019)",
+        "archivo": "11_ONCOSALUD_contrato_2019.pdf"
+      }
+    ]
   }
 ]
