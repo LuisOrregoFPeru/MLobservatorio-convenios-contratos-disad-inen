@@ -12,6 +12,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
+from consultas import EJEMPLOS, responder_ia, responder_local
 from core import (BASE, COLORES, ORDEN_ESTADO, PDFS, accion_sugerida, cargar_beneficios, cargar_convenios,
                   config_correo, enviar_correo, hoy, html_alerta, seleccionar_alertas)
 
@@ -45,6 +46,7 @@ def ventana(label):
 
 # ---------------------------------------------------------------- datos
 HOY = hoy()
+URL_APP = "https://mlobservatorio-convenios-contratos-disad-inen.streamlit.app/"
 df = cargar_convenios(HOY)
 ben = cargar_beneficios().set_index("id")
 IND = json.loads((BASE / "data" / "indicadores.json").read_text(encoding="utf-8"))
@@ -89,6 +91,12 @@ st.markdown(
     .bar > div {height:100%}
     .chip {display:inline-block;background:rgba(21,112,239,.1);color:#175CD3;border-radius:6px;padding:2px 8px;
            margin:2px 4px 2px 0;font-size:.78rem;font-weight:600}
+    [class*="st-key-ej_"] button {justify-content:flex-start !important; text-align:left !important; width:100%;
+                                  padding-left:0 !important; min-height:0 !important; border:none !important;
+                                  background:transparent !important; box-shadow:none !important}
+    [class*="st-key-ej_"] button div, [class*="st-key-ej_"] button p {text-align:left !important; justify-content:flex-start !important;
+                                  width:100%}
+    [class*="st-key-ej_"] button p {color:#175CD3; font-style:italic}
     .perfil {border-left:5px solid #1570EF;padding:8px 12px;border-radius:8px;background:rgba(21,112,239,.05);height:100%}
     </style>
     """,
@@ -240,6 +248,98 @@ if not urg.empty:
         f"{'vencido' if r['dias_venc'] < 0 else str(r['dias_venc']) + ' d'}</span>" for _, r in urg.iterrows())
     st.markdown(f"⚠️ **Requieren atención:** {chips}", unsafe_allow_html=True)
 
+def leer_secretos() -> dict:
+    """Lee st.secrets sin mostrar el aviso de Streamlit cuando no existe secrets.toml."""
+    try:
+        if hasattr(st.secrets, "load_if_toml_exists") and not st.secrets.load_if_toml_exists():
+            return {}
+        return dict(st.secrets)
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+SECRETOS = leer_secretos()
+
+# ================================================================ panel lateral
+if "qa_pregunta" not in st.session_state:
+    st.session_state.qa_pregunta = ""
+    st.session_state.qa_respuesta = ""
+
+
+def _preguntar(texto: str) -> None:
+    st.session_state.qa_pregunta = texto
+    st.session_state.qa_txt = texto
+    st.session_state.qa_lanzar = True
+
+
+def _limpiar() -> None:
+    st.session_state.qa_pregunta = ""
+    st.session_state.qa_respuesta = ""
+    st.session_state.qa_txt = ""
+
+
+with st.sidebar:
+    st.markdown("## ⚙️ Panel de control")
+    with st.expander("💬 Pregunta a los datos", expanded=True):
+        usar_filtros = st.toggle("Aplicar los filtros del panel", value=True,
+                                 help="Si está activo, la respuesta considera solo los convenios filtrados.")
+        st.text_area("Pregunta", key="qa_txt", label_visibility="collapsed", height=80,
+                     placeholder="Ej.: ¿qué albergue acepta a un niño de 13 años?")
+        c1, c2 = st.columns(2)
+        consultar = c1.button("Consultar", type="primary", **ANCHO)
+        c2.button("Limpiar", on_click=_limpiar, **ANCHO)
+        st.caption("Ejemplos de preguntas (tócalos para consultar)")
+        for k, ej in enumerate(EJEMPLOS):
+            st.button(ej, key=f"ej_{k}", on_click=_preguntar, args=(ej,),
+                      **({"type": "tertiary"} if _V >= (1, 43) else {}))
+        try:
+            clave_secreta = SECRETOS.get("ANTHROPIC_API_KEY", "")
+        except Exception:  # noqa: BLE001
+            clave_secreta = ""
+        with ventana("✨ Activar modo IA"):
+            clave = st.text_input("Clave de API de Anthropic", type="password", value="",
+                                  help="Se usa solo en esta sesión y no se guarda. También puede definirse como "
+                                       "ANTHROPIC_API_KEY en los secretos de Streamlit.")
+        clave = clave or clave_secreta
+        st.caption("🟢 Modo IA activo" if clave else "⚪ Modo básico (sin IA)")
+
+    with st.expander("🔎 Filtros", expanded=False):
+        f_tipo = st.multiselect("Tipo", ["No prestacional", "Prestacional"], default=["No prestacional", "Prestacional"])
+        f_estado = st.multiselect("Estado", ORDEN_ESTADO, default=ORDEN_ESTADO)
+        f_inst = st.multiselect("Institución", list(df["id"]), format_func=lambda i: CORTO[i],
+                                help="Vacío muestra todas")
+    dfv = df[df["tipo"].isin(f_tipo) & df["estado"].isin(f_estado)]
+    if f_inst:
+        dfv = dfv[dfv["id"].isin(f_inst)]
+
+    if consultar or st.session_state.pop("qa_lanzar", False):
+        pregunta = (st.session_state.get("qa_txt") or "").strip()
+        st.session_state.qa_pregunta = pregunta
+        base = dfv if usar_filtros else df
+        if not pregunta:
+            st.session_state.qa_respuesta = "Escribe una pregunta o toca un ejemplo."
+        elif clave:
+            ids = set(base["id"])
+            ctx = {"fecha_corte": f"{HOY:%d/%m/%Y}",
+                   "convenios": base.drop(columns=["orden"], errors="ignore").to_dict(orient="records"),
+                   "beneficios": ben[ben.index.isin(ids)].reset_index().to_dict(orient="records"),
+                   "indicadores": IND}
+            try:
+                with st.spinner("Consultando…"):
+                    st.session_state.qa_respuesta = responder_ia(pregunta, clave, ctx)
+            except Exception as e:  # noqa: BLE001
+                st.session_state.qa_respuesta = (f"No se pudo usar el modo IA ({e}). Respuesta del modo básico:\n\n"
+                                                 + responder_local(pregunta, base, ben, IND, CORTO))
+        else:
+            st.session_state.qa_respuesta = responder_local(pregunta, base, ben, IND, CORTO)
+
+if st.session_state.qa_respuesta:
+    with st.container(border=True):
+        h1, h2 = st.columns([12, 1])
+        h1.markdown(f"**💬 {st.session_state.qa_pregunta}**")
+        h2.button("✖", key="qa_cerrar", on_click=_limpiar)
+        st.markdown(st.session_state.qa_respuesta)
+
 t1, t2, t4 = st.tabs(["🤝 No prestacionales", "🏥 Prestacionales", "✉️ Alertas y descargas"])
 
 
@@ -288,7 +388,7 @@ def criterios(ids: list[str], key: str) -> None:
 
 # ================================================================ 1. No prestacionales
 with t1:
-    d = df[df["tipo"] == "No prestacional"]
+    d = dfv[dfv["tipo"] == "No prestacional"]
     kpis(d)
     st.write("")
     grilla(d)
@@ -362,7 +462,7 @@ with t1:
 
 # ================================================================ 2. Prestacionales
 with t2:
-    d = df[df["tipo"] == "Prestacional"]
+    d = dfv[dfv["tipo"] == "Prestacional"]
     kpis(d)
     st.markdown("### 📑 Convenios")
     grilla(d[d["clase"] == "Convenio"])
@@ -385,7 +485,7 @@ with t2:
 # ================================================================ 4. Alertas y descargas
 with t4:
     try:
-        secrets = dict(st.secrets)
+        secrets = SECRETOS
     except Exception:  # noqa: BLE001
         secrets = {}
     cfg = config_correo(secrets)
@@ -403,10 +503,10 @@ with t4:
     else:
         asunto = f"[Convenios DISAD] {len(sel)} convenio(s) requieren atención"
         with st.expander("Vista previa del correo"):
-            st.markdown(html_alerta(sel, asunto), unsafe_allow_html=True)
+            st.markdown(html_alerta(sel, asunto, URL_APP), unsafe_allow_html=True)
         if st.button("✉️ Enviar ahora", type="primary", disabled=not ok):
             try:
-                enviar_correo(cfg, asunto, html_alerta(sel, asunto), [x.strip() for x in dest.split(",") if x.strip()])
+                enviar_correo(cfg, asunto, html_alerta(sel, asunto, URL_APP), [x.strip() for x in dest.split(",") if x.strip()])
                 st.success("Correo enviado.")
             except Exception as e:  # noqa: BLE001
                 st.error(f"No se pudo enviar: {e}")
@@ -426,3 +526,72 @@ with t4:
                        a_excel({"Beneficios": ben.reset_index(), "Albergues": pd.DataFrame(IND["albergues"])}),
                        f"beneficios_convenios_DISAD_{HOY:%Y%m%d}.xlsx",
                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "x2")
+
+# ================================================================ pie: autoría y cita
+TIT_ES = ("Observatorio de Convenios y Contratos de la Dirección de Servicios de Apoyo al Diagnóstico y "
+          "Tratamiento: Vigencia, Beneficios y Criterios de Derivación")
+TIT_EN = ("INEN Agreements and Contracts Observatory of the Directorate of Diagnostic and Treatment Support "
+          "Services: Validity, Benefits and Referral Criteria")
+INST_ES, INST_EN = "Instituto Nacional de Enfermedades Neoplásicas", "National Institute of Neoplastic Diseases"
+AUTOR = "Orrego-Ferreyros LA"
+ANIO = "2026"
+MES_ES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre",
+          "noviembre", "diciembre"]
+MES_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+          "November", "December"]
+acc_es = f"{HOY.day} de {MES_ES[HOY.month - 1]} de {HOY.year}"
+acc_en = f"{MES_EN[HOY.month - 1]} {HOY.day}, {HOY.year}"
+ref_es = f"{AUTOR}. {TIT_ES}. {INST_ES}. Published {ANIO}. Accessed {acc_es}. {URL_APP}"
+ref_en = f"{AUTOR}. {TIT_EN}. {INST_EN}. Published {ANIO}. Accessed {acc_en}. {URL_APP}"
+
+bib = f"""@misc{{orrego_observatorio_convenios_{ANIO},
+  author       = {{Orrego-Ferreyros, Luis Alexander}},
+  title        = {{{TIT_ES}}},
+  howpublished = {{\\url{{{URL_APP}}}}},
+  organization = {{{INST_ES}}},
+  year         = {{{ANIO}}},
+  note         = {{Accedido el {acc_es}}}
+}}
+"""
+ris = f"""TY  - ELEC
+AU  - Orrego-Ferreyros, Luis Alexander
+TI  - {TIT_ES}
+PB  - {INST_ES}
+PY  - {ANIO}
+UR  - {URL_APP}
+Y2  - {HOY:%Y/%m/%d}
+LA  - es
+ER  - 
+"""
+xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<xml><records><record>
+<ref-type name="Web Page">12</ref-type>
+<contributors><authors><author>Orrego-Ferreyros, Luis Alexander</author></authors></contributors>
+<titles><title>{TIT_ES}</title></titles>
+<publisher>{INST_ES}</publisher>
+<dates><year>{ANIO}</year></dates>
+<urls><related-urls><url>{URL_APP}</url></related-urls></urls>
+<access-date>{HOY:%Y-%m-%d}</access-date>
+<language>spa</language>
+</record></records></xml>
+"""
+
+st.divider()
+st.markdown(
+    "<div style='text-align:center;opacity:.7;font-size:.9rem;margin:6px 0 16px'>"
+    "© Luis A. Orrego Ferreyros, Econ., MCE, MMD, PhD(c), CQRM · Epidemiólogo y Economista de la Salud · INEN</div>"
+    "<div style='border:1px solid rgba(128,128,128,.25);background:rgba(128,128,128,.06);border-radius:10px;"
+    "padding:16px 20px;font-size:.88rem;line-height:1.7'>"
+    "<div style='font-weight:700;color:#0B4A9E;font-size:.82rem'>REFERENCIA WEB (formato AMA)</div>"
+    f"<div style='margin-bottom:12px'>{ref_es}</div>"
+    "<div style='font-weight:700;color:#0B4A9E;font-size:.82rem'>WEB REFERENCE (AMA format)</div>"
+    f"<div>{ref_en}</div></div>",
+    unsafe_allow_html=True,
+)
+r1, r2, r3 = st.columns(3)
+with r1:
+    st.download_button("⬇️ BibTeX (*.bib)", bib, file_name="observatorio_convenios_inen.bib", mime="application/x-bibtex", key="cit_bib")
+with r2:
+    st.download_button("⬇️ EndNote XML (*.xml)", xml, file_name="observatorio_convenios_inen.xml", mime="application/xml", key="cit_xml")
+with r3:
+    st.download_button("⬇️ RIS (*.ris)", ris, file_name="observatorio_convenios_inen.ris", mime="application/x-research-info-systems", key="cit_ris")
